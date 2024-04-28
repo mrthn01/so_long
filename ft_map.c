@@ -6,12 +6,12 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:14:11 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/27 22:27:38 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 16:39:40 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-// look at the code after
+
 int	ft_read_map(t_game *game, char *path)
 {
 	char	*line;
@@ -26,7 +26,7 @@ int	ft_read_map(t_game *game, char *path)
 	while (line)
 	{
 		if (ft_strlen(line) != game->width)
-			ft_error();
+			ft_error("Line does not fit the length of game");
 		game->map = ft_strjoin(game->map, line);
 		height++;
 		free(line);
@@ -51,7 +51,7 @@ int	ft_check_map(t_game *game)
 	{
 		if ((game->map)[j] != '1'
 			|| (game->map)[j + game->width - 2] != '1')
-			ft_error();
+			ft_error("Last line does not wall");
 		i++;
 		j += game->width;
 	}
@@ -60,7 +60,7 @@ int	ft_check_map(t_game *game)
 	{
 		if ((game->map)[i] != '1'
 			|| (game->map)[i + (game->width) * (game->height - 1)] != '1')
-			ft_error();
+			ft_error("Last line does not wall");
 		i++;
 	}
 	return (1);
@@ -91,8 +91,8 @@ int	ft_map(t_game *game, char *argv)
 	ft_check_counts(game);
 	ft_start_exit(game);
 	if (ft_call_search_exit(game) == 0)
-		ft_error();
+		ft_error("Error");
 	if (ft_call_search_item(game) != game->coin)
-		ft_error();
+		ft_error("Error");
 	return (1);
 }

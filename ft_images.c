@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:11:20 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 00:31:06 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 16:04:16 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_add_image(t_game *game)
 	int	y;
 
 	i = -1;
-	while (i++ < (int)ft_strlen(game->map))
+	while (i++ < ft_strlen(game->map))
 	{
 		y = i / game->width;
 		if (game->map[i] == '1')

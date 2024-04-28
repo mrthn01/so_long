@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:53:40 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/27 22:40:05 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 16:38:55 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	ft_get_fd(char *path)
 	len = ft_strlen(path);
 	if (len < 5 || path[len - 1] != 'r' || path[len - 2] != 'e'
 		|| path[len - 3] != 'b' || path[len - 4] != '.')
-		ft_error();
+		ft_error("Invalid map name");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		ft_error();
+		ft_error("Get next line error");
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:14:55 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 14:26:43 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 16:32:53 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_game
 	int		counter;
 }	t_game;
 
-void	ft_error();
+void	ft_error(char *str);
 void	ft_solong(t_game *game);
 int		ft_map(t_game *game, char *argv);
 int		ft_check_map(t_game *game);
