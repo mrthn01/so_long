@@ -5,79 +5,96 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 12:39:59 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/21 16:55:14 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/04/27 18:53:40 by murathanelc       #+#    #+#             */
+/*   Updated: 2024/04/27 22:40:05 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_e(t_game *game)
+int	ft_call_search_exit(t_game *game)
 {
-	char	*str;
+	char	*visited;
 	int		i;
 	int		result;
 
 	result = 0;
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (int)ft_strlen(game->map.map));
-	while (i < (int)ft_strlen(game->map.map))
+	visited = malloc(ft_strlen(game->map));
+	while (i < ft_strlen(game->map))
 	{
-		str[i] = '0';
+		visited[i] = '0';
 		i++;
 	}
-	if (ft_search_exit(game, game->character.start, str) == 1)
+	if (ft_search_e(game, game->start, visited) == 1)
 		result = 1;
-	free(str);
+	free(visited);
 	return (result);
 }
 
-int	ft_search_exit(t_game *game, int i, char *str)
+int	ft_search_e(t_game *game, int i, char *visited)
 {
-	if (str[i] == '1' || i < 0 || i > (int)ft_strlen(game->map.map)
-		|| (game->map.map)[i] == '1')
+	if (visited[i] == '1' || i < 0
+		|| i > ft_strlen(game->map)
+		|| (game->map)[i] == '1')
 		return (0);
-	str[i] = '1';
-	if ((game->map.map)[i] == 'E')
+	visited[i] = '1';
+	if ((game->map)[i] == 'E')
 		return (1);
-	return (ft_search_exit(game, i + 1, str)
-		|| ft_search_exit(game, i - 1, str)
-		|| ft_search_exit(game, i + game->width, str)
-		|| ft_search_exit(game, i - game->width, str));
+	return (ft_search_e(game, i + 1, visited)
+		|| ft_search_e(game, i - 1, visited)
+		|| ft_search_e(game, i + game->width, visited)
+		|| ft_search_e(game, i - game->width, visited));
 }
 
-int	ft_coin(t_game *game)
+int	ft_call_search_item(t_game *game)
 {
-	char	*str;
-	int		result;
+	char	*visited;
 	int		i;
+	int		result;
 
-	str = (char *)malloc(sizeof(char) * (int)ft_strlen(game->map.map));
-	result = 1;
+	result = 0;
 	i = 0;
-	while (i < (int)ft_strlen(game->map.map))
+	visited = malloc(ft_strlen(game->map));
+	while (i < ft_strlen(game->map))
 	{
-		str[i] = '0';
+		visited[i] = '0';
 		i++;
 	}
-	result = ft_search_coin(game, game->character.start, str);
-	free(str);
+	result = ft_search_i(game, game->start, visited);
+	free(visited);
 	return (result);
 }
 
-int	ft_search_coin(t_game *game, int i, char *str)
+int	ft_search_i(t_game *game, int i, char *visited)
 {
-	int	coin;
+	int	is_coin;
 
-	coin = 0;
-	if (str[i] == '1' || i < 0 || i < (int)ft_strlen(game->map.map)
-		|| (game->map.map)[i] == '1')
+	is_coin = 0;
+	if (visited[i] == '1' || i < 0
+		|| i > ft_strlen(game->map)
+		|| (game->map)[i] == '1')
 		return (0);
-	str[i] = '1';
-	if ((game->map.map)[i] == 'C')
-		coin = 1;
-	return (ft_search_coin(game, i + 1, str)
-		+ ft_search_coin(game, i - 1, str)
-		+ ft_search_coin(game, i + game->width, str)
-		+ ft_search_coin(game, i - game->width, str) + coin);
+	visited[i] = '1';
+	if ((game->map)[i] == 'C')
+		is_coin = 1;
+	return (ft_search_i(game, i + 1, visited)
+		+ ft_search_i(game, i - 1, visited)
+		+ ft_search_i(game, i + game->width, visited)
+		+ ft_search_i(game, i - game->width, visited) + is_coin);
+}
+
+int	ft_get_fd(char *path)
+{
+	int	fd;
+	int	len;
+
+	len = ft_strlen(path);
+	if (len < 5 || path[len - 1] != 'r' || path[len - 2] != 'e'
+		|| path[len - 3] != 'b' || path[len - 4] != '.')
+		ft_error();
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		ft_error();
+	return (fd);
 }

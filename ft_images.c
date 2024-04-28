@@ -5,54 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 14:39:50 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/21 15:10:08 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/04/27 18:11:20 by murathanelc       #+#    #+#             */
+/*   Updated: 2024/04/28 00:31:06 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_image(t_game *game)
+void	ft_put_image(t_game *game)
 {
 	int	i;
 	int	j;
 
-	game->map.floor = mlx_xpm_file_to_image(game->mlx_connection,
+	game->floor = mlx_xpm_file_to_image(game->mlxptr,
 			"images/floor.xpm", &i, &j);
-	game->map.barrier = mlx_xpm_file_to_image(game->mlx_connection,
-			"images/wall.xpm", &i, &j);
-	game->map.player = mlx_xpm_file_to_image(game->mlx_connection,
+	game->barrier = mlx_xpm_file_to_image(game->mlxptr,
+			"images/block.xpm", &i, &j);
+	game->player = mlx_xpm_file_to_image(game->mlxptr,
 			"images/tarcin2.xpm", &i, &j);
-	game->map.exit = mlx_xpm_file_to_image(game->mlx_connection,
+	game->exit = mlx_xpm_file_to_image(game->mlxptr,
 			"images/exit.xpm", &i, &j);
-	game->map.collectable = mlx_xpm_file_to_image(game->mlx_connection,
+	game->item = mlx_xpm_file_to_image(game->mlxptr,
 			"images/item.xpm", &i, &j);
 }
 
 void	ft_add_image(t_game *game)
 {
 	int	i;
-	int	j;
+	int	y;
 
-	i = 0;
-	while (i < (int)ft_strlen(game->map.map))
+	i = -1;
+	while (i++ < (int)ft_strlen(game->map))
 	{
-		j = i / game->width;
-		if (game->map.map[i] == '1')
-			mlx_put_image_to_window(game->mlx_connection, game->window,
-				game->map.barrier, (i % game->width) * 40, j * 40);
-		if (game->map.map[i] == 'C')
-			mlx_put_image_to_window(game->mlx_connection, game->window,
-				game->map.collectable, (i % game->width) * 40, j * 40);
-		if (game->map.map[i] == 'P')
-			mlx_put_image_to_window(game->mlx_connection, game->window,
-				game->map.player, (i % game->width) * 40, j * 40);
-		if (game->map.map[i] == 'E')
-			mlx_put_image_to_window(game->mlx_connection, game->window,
-				game->map.exit, (i % game->width) * 40, j * 40);
-		if (game->map.map[i] == '0')
-			mlx_put_image_to_window(game->mlx_connection, game->window,
-				game->map.floor, (i % game->width) * 40, j * 40);
-		i++;
+		y = i / game->width;
+		if (game->map[i] == '1')
+			mlx_put_image_to_window(game->mlxptr, game->window,
+				game->barrier, (i % game->width) * 40, y * 40);
+		if (game->map[i] == 'C')
+			mlx_put_image_to_window(game->mlxptr, game->window,
+				game->item, (i % game->width) * 40, y * 40);
+		if (game->map[i] == 'P')
+			mlx_put_image_to_window(game->mlxptr, game->window,
+				game->player, (i % game->width) * 40, y * 40);
+		if (game->map[i] == 'E')
+			mlx_put_image_to_window(game->mlxptr, game->window,
+				game->exit, (i % game->width) * 40, y * 40);
+		if (game->map[i] == '0')
+			mlx_put_image_to_window(game->mlxptr, game->window,
+				game->floor, (i % game->width) * 40, y * 40);
 	}
 }

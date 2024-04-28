@@ -5,23 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 17:13:27 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/21 16:57:47 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/04/28 14:18:28 by murathanelc       #+#    #+#             */
+/*   Updated: 2024/04/28 14:29:32 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	ft_error(void)
+{
+	ft_printf("Error\n");
+	exit(1);
+}
+
+void	ft_solong(t_game *game)
+{
+	game->mlxptr = mlx_init();
+	game->window = mlx_new_window(game->mlxptr, ((game->width) - 1) * 40,
+			((game->height) - 1) * 40, "so_long");
+	ft_put_image(game);
+	ft_add_image(game);
+	mlx_key_hook(game->window, ft_key, game);
+	mlx_hook(game->window, 17, 0, (void *)exit, 0);
+	mlx_loop(game->mlxptr);
+}
+
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game	*game;
 
+	game = malloc(sizeof(t_game));
 	if (argc != 2)
-		ft_printf("Incorrect number of input");
-	ft_map(&game, argv[1]);
-	ft_solong_initialize(&game);
-	mlx_key_hook(game.window, ft_controls, &game);
-	mlx_hook(game.window, 17, 0, (void *)exit, 0);
-	mlx_loop(game.mlx_connection);
+		ft_error();
+	ft_map(game, argv[1]);
+	ft_solong(game);
 	return (0);
 }

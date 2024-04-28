@@ -1,35 +1,72 @@
-NAME = solong
-
-SRCS = ft_applications.c ft_checker.c ft_controls.c \
-		ft_images.c ft_map.c ft_mlx_initialize.c \
-		ft_search.c main.c ft_errors.c
-
-OBJS = $(SRCS:.c=.o)
+NAME = so_long
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-LIBFT = libft/libft.a
-PRINTF = printf/libftprintf.a
-MINILIBX = minilibx/libmlx.a
-SOLONG = solong
 
-all: ${NAME} $(SOLONG)
+CFLAGS = -Wall -Wextra -Werror -Iheaders/
 
-$(NAME): $(OBJS)
-	@${MAKE} -C ./printf
-	@${MAKE} -C ./libft
-	@${MAKE} -C ./minilibx
-	@${CC} ${CFLAGS} ${SRCS} ${PRINTF} ${LIBFT} ${MINILIBX} -o ${OBJS}
+SOURCE = 	main.c \
+			ft_controls.c \
+			ft_count.c \
+			ft_images.c \
+			ft_map.c \
+			ft_search.c
+
+OBJ = ${SOURCE:.c=.o}
+
+PRINTF := printf/libftprintf.a
+GETNEXTLINE := get_next_line/*c
+LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
+MINILIBX := minilibx/libmlx.a
+
+# all:
+# 	make -C $(MINILIBX)
+# 	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBRARY) -o $(NAME)
+
+# clean:
+# 	make -C ./printf
+# 	@${cc} ${CFLAGS} 
+
+# fclean: clean
+# 		make clean -C $(MINILIBX)
+# 		rm -rf $(NAME)
+
+
+# re: fclean all
+
+# all: $(OBJ)
+# 	make -C $(MINILIBX)
+# 	${CC} ${CFLAGS} ${SOURCE} ${LIBRARY} ${PRINTF} ${GETNEXTLINE} -o $(NAME)
+
+# clean:
+# 	make -C ./printf clean
+# 	make -C ./minilibx clean
+# 	rm -rf $(OBJS)
+
+# fclean: clean
+# 	make -C ./printf fclean
+# 	make -C ./minilibx fclean
+# 	rm -rf $(NAME)
+
+# re: fclean all
+
+# .PHONY: all clean fclean re
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+		@${MAKE} -C ./printf
+		@${MAKE} -C ./minilibx
+		@${CC} ${CFLAGS} $(SOURCE) $(LIBRARY) $(PRINTF) $(GETNEXTLINE) -o $(NAME)
 
 clean:
 	@${MAKE} -C ./printf clean
-	@${MAKE} -C ./libft clean
 	@${MAKE} -C ./minilibx clean
-	rm -rf ${OBJS}
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf ${NAME}
-	
+	@${MAKE} -C ./printf fclean
+	rm -rf $(NAME)
+
 re: fclean all
 
-.PHONY: all clean fclean all
+.PHONY: all clean fclean re

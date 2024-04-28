@@ -6,13 +6,13 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:03:25 by melcuman          #+#    #+#             */
-/*   Updated: 2024/04/20 13:51:55 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/27 22:11:10 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	str_len(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	length_of_string;
 
@@ -22,7 +22,7 @@ int	str_len(const char *str)
 	return (length_of_string);
 }
 
-char	*str_chr(char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ char	*str_chr(char *s, int c)
 	return (0);
 }
 
-char	*str_join(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -51,7 +51,7 @@ char	*str_join(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	res = malloc(str_len(s1) + str_len(s2) + 1);
+	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!res)
 		return (NULL);
 	i = -1;
