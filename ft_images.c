@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:11:20 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 16:04:16 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/29 17:42:39 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	ft_put_image(t_game *game)
 			"images/exit.xpm", &i, &j);
 	game->item = mlx_xpm_file_to_image(game->mlxptr,
 			"images/item.xpm", &i, &j);
+	if (!(game->floor) || !(game->barrier) || !(game->player)
+		|| !(game->exit) || !(game->item))
+		ft_error("Missing images!");
 }
 
 void	ft_add_image(t_game *game)

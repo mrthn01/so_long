@@ -18,39 +18,6 @@ GETNEXTLINE := get_next_line/*c
 LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 MINILIBX := minilibx/libmlx.a
 
-# all:
-# 	make -C $(MINILIBX)
-# 	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBRARY) -o $(NAME)
-
-# clean:
-# 	make -C ./printf
-# 	@${cc} ${CFLAGS} 
-
-# fclean: clean
-# 		make clean -C $(MINILIBX)
-# 		rm -rf $(NAME)
-
-
-# re: fclean all
-
-# all: $(OBJ)
-# 	make -C $(MINILIBX)
-# 	${CC} ${CFLAGS} ${SOURCE} ${LIBRARY} ${PRINTF} ${GETNEXTLINE} -o $(NAME)
-
-# clean:
-# 	make -C ./printf clean
-# 	make -C ./minilibx clean
-# 	rm -rf $(OBJS)
-
-# fclean: clean
-# 	make -C ./printf fclean
-# 	make -C ./minilibx fclean
-# 	rm -rf $(NAME)
-
-# re: fclean all
-
-# .PHONY: all clean fclean re
-
 all: $(NAME)
 
 $(NAME): $(OBJ)

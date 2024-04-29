@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:14:55 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 16:32:53 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/29 17:25:53 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@
 # include "get_next_line/get_next_line.h"
 # include "printf/ft_printf.h"
 # include "minilibx/mlx.h"
-// charachter structure
-// typedef struct s_chr
-// {
-// 	char	*map;
-// 	void	*item;
-// 	void	*player;
-// 	void	*exit;
-// 	void	*floor;
-// 	void	*barrier;
-// }	t_chr;
-// game structure
+
 typedef struct s_game
 {
 	char	*map;

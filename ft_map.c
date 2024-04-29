@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:14:11 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 21:24:48 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/29 17:40:31 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	ft_check_map(t_game *game)
 
 	i = 0;
 	j = 0;
+	if (!(game->map))
+		ft_error("Empty Map!");
 	while (i < game->height)
 	{
 		if ((game->map)[j] != '1'
@@ -56,7 +58,7 @@ int	ft_check_map(t_game *game)
 		j += game->width;
 	}
 	i = 0;
-	while (i < game->width - 1)
+	while (i < game-> width - 1)
 	{
 		if ((game->map)[i] != '1'
 			|| (game->map)[i + (game->width) * (game->height - 1)] != '1')
