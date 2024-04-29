@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:53:40 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/28 16:38:55 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/29 14:43:40 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	ft_call_search_item(t_game *game)
 	result = 0;
 	i = 0;
 	visited = malloc(ft_strlen(game->map));
+	if (!visited)
+		return (0);
 	while (i < ft_strlen(game->map))
 	{
 		visited[i] = '0';

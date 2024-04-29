@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:51:16 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/27 22:26:02 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 21:15:12 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*ft_read(int fd, char *buffer)
 		i = read(fd, str, BUFFER_SIZE);
 		if (i == -1)
 		{
-			free(str);
 			free(buffer);
+			free(str);
 			return (0);
 		}
 		str[i] = '\0';
@@ -80,14 +80,13 @@ char	*ft_next_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
+	if (buffer[i] == '\n')
+		i++;
 	str = malloc(ft_strlen(buffer) - i + 1);
 	if (!str)
 		return (NULL);
-	while (buffer[i] && i++)
-	{
-		str[j] = buffer[i + j];
-		j++;
-	}
+	while (buffer[i])
+		str[j++] = buffer[i++];
 	str[j] = '\0';
 	free(buffer);
 	return (str);

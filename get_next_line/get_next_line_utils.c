@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:03:25 by melcuman          #+#    #+#             */
-/*   Updated: 2024/04/28 15:59:03 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/28 21:16:49 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	ft_strlen(const char *str)
 {
-	int	length_of_string;
+	int	len;
 
-	length_of_string = 0;
-	while (str[length_of_string] != '\0')
-		length_of_string++;
-	return (length_of_string);
+	if (!str)
+		return (0);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
 char	*ft_strchr(char *s, int c)
@@ -57,9 +59,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = -1;
 	while (*(s1 + ++i))
 		*(res + i) = *(s1 + i);
-	j = 0;
-	while (*(s2 + j))
-		*(res + i++) = *(s2 + j++);
+	j = -1;
+	while (*(s2 + ++j))
+		*(res + i++) = *(s2 + j);
 	*(res + i) = '\0';
 	free(s1);
 	return (res);
