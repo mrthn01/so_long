@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:11:20 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/29 17:42:39 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/30 10:52:12 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_put_image(t_game *game)
 	int	j;
 
 	game->floor = mlx_xpm_file_to_image(game->mlxptr,
-			"images/floor.xpm", &i, &j);
+			"images/ground.xpm", &i, &j);
 	game->barrier = mlx_xpm_file_to_image(game->mlxptr,
 			"images/block.xpm", &i, &j);
 	game->player = mlx_xpm_file_to_image(game->mlxptr,
-			"images/tarcin2.xpm", &i, &j);
+			"images/sheep.xpm", &i, &j);
 	game->exit = mlx_xpm_file_to_image(game->mlxptr,
 			"images/exit.xpm", &i, &j);
 	game->item = mlx_xpm_file_to_image(game->mlxptr,
