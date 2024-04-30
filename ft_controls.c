@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:33:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/04/29 19:36:16 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/04/30 18:32:22 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	ft_key(int command, t_game *game)
 {
 	if (command == 53)
 		ft_exit_game(game);
-	else if (command == 0 || command == 123)
+	else if (command == 0)
 		ft_move(-1, game);
-	else if (command == 2 || command == 124)
+	else if (command == 2)
 		ft_move(1, game);
-	else if (command == 13 || command == 126)
+	else if (command == 13)
 		ft_move(-1 * (game->width), game);
-	else if (command == 1 || command == 125)
+	else if (command == 1)
 		ft_move(game->width, game);
 	if (game->start == game->end && game->coin == 0)
 	{
